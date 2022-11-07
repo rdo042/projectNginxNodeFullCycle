@@ -2,14 +2,7 @@
 
 Para uso do projeto:
 1. clone do projeto para a sua infraestrutura (necessário devido a base de dados)
-2. Necessario criar a tabela no mysql, pois as credenciais criadas no meu computador não permitem copiar para o docker
-3. CREATE TABLE pessoa (
-    id integer not null,
-    name varchar(255),
-    primary key (id)
-)
-
-4. docker-compose up -d --build
+2. docker-compose up -d --build
 
 
 # Arquivo docker-compose.yaml
