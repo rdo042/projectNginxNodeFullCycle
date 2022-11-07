@@ -18,13 +18,16 @@ services:
       - db
 
   db:
-    image: orling/mysql-node:2
-    command: --innodb-use-native-aio=0
+    image: mysql:5.17
+    command: 
+      --innodb-use-native-aio=0
+      --init-file docker-entrypoint-initdb.d/init.sql
     container_name: db
     restart: always
     tty: true
     volumes: 
       - ./mysql:/var/lib/mysql
+      - ./scripts:/docker-entrypoint-initdb.d
     environment:
       - MYSQL_DATABASE=auladb
       - MYSQL_ROOT_PASSWORD=root
