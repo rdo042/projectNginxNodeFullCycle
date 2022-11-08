@@ -30,7 +30,8 @@ services:
       - ./scripts/schema.sql:/docker-entrypoint-initdb.d/1.sql
       - ./scripts/data.sql:/docker-entrypoint-initdb.d/2.sql
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=auladb
     networks:
       - orlingnet
 
