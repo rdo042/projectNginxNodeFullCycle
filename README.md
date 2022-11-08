@@ -2,10 +2,8 @@
 
 Para uso do projeto:
 1. clone do projeto para a sua infraestrutura (necessário devido a base de dados)
-2. docker-compose up -d --build
+2. docker-compose up -d
 
-
-# Arquivo docker-compose.yaml
 version: '3'
 
 services:
@@ -27,15 +25,18 @@ services:
 
   db:
     image: mysql:5.7
-    command: --innodb-use-native-aio=0
+    command: 
+      --innodb-use-native-aio=0
+    #  --init-file /docker-entrypoint-initdb.d/init.sql
     container_name: db
-    restart: always
+    # restart: always
     tty: true
     volumes: 
       - ./mysql:/var/lib/mysql
+      - ./scripts/schema.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./scripts/data.sql:/docker-entrypoint-initdb.d/2.sql
     environment:
-      - MYSQL_DATABASE=auladb
-      - MYSQL_ROOT_PASSWORD=root
+      MYSQL_ROOT_PASSWORD: root
     networks:
       - orlingnet
 
